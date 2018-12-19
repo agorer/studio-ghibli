@@ -13,9 +13,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path
-from movies.list import views
+from django.urls import path, include
+from django.views.generic.base import RedirectView
 
 urlpatterns = [
-    path('', views.movie_list_page, name='movie_list')
+    path('', RedirectView.as_view(url='/movies')),
+    path('movies', include('movies.urls'))
 ]
