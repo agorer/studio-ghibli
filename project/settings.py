@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.staticfiles',
+    'movies'
 ]
 
 MIDDLEWARE = [
@@ -84,3 +85,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Test runner that does not need database
+
+TEST_RUNNER = 'project.testing.DatabaselessTestRunner'
