@@ -4,6 +4,22 @@
   </head>
 
   <body>
-    Hola
+    <ul>
+      {% for movie in movies %}
+      <li class="movie">
+        <div class="title">
+          {{ movie.title }}
+        </div>
+
+        <div class="release-date">
+          {{ movie.release_date }}
+        </div>
+
+        <div class="description">
+          {{ movie.description }}
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
   </body>
 </html>
