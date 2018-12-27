@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .movies_repository import MoviesRepository
+from movies.common.movies_repository import MoviesRepository
 
 
 def movie_list_page(request):

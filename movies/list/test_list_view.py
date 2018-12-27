@@ -2,7 +2,7 @@ from django.test import SimpleTestCase
 from django.urls import resolve
 from movies.list.views import movie_list_page
 from unittest import mock
-from .movie import Movie
+from movies.common.movie import Movie
 
 
 class TestListView(SimpleTestCase):

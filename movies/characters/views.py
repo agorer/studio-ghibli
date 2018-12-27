@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from movies.list.movies_repository import MoviesRepository
+from movies.common.movies_repository import MoviesRepository
 
 
 def characters_page(request, movie_id):
