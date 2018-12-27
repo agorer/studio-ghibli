@@ -11,3 +11,6 @@ class MoviesRepository:
             return map(parse, response.json())
         else:
             return []
+
+    def find_characters(self):
+        pass
