@@ -6,7 +6,7 @@ def characters_page(request, movie_id):
     repository = MoviesRepository()
 
     context = {
-        'characters': repository.find_characters()
+        'characters': repository.find_characters(movie_id)
     }
 
     return render(request, 'movies/characters/characters.html', context)
