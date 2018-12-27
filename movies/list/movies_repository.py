@@ -1,12 +1,5 @@
 import requests
-from .movie import Movie
-
-
-def convertToEntity(jsonMovie):
-    return Movie(jsonMovie['id'],
-                 jsonMovie['title'],
-                 jsonMovie['description'],
-                 int(jsonMovie['release_date']))
+from .api_movie_parser import parse
 
 
 class MoviesRepository:
@@ -15,6 +8,6 @@ class MoviesRepository:
     def find_all(self):
         response = requests.get(MoviesRepository.MOVIE_LIST_PATH)
         if response.ok:
-            return map(convertToEntity, response.json())
+            return map(parse, response.json())
         else:
             return []
