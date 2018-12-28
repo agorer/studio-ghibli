@@ -8,7 +8,7 @@
       {% for movie in movies %}
       <li class="movie">
         <div class="title">
-          {{ movie.title }}
+          <a class="title-link" href="{% url 'movies:characters' movie.id %}">{{ movie.title }}</a>
         </div>
 
         <div class="release-date">

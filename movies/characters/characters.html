@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title>Movie characters</title>
+  </head>
+
+  <body>
+    <ul>
+      {% for character in characters %}
+      <li class="character">
+        <span class="name">
+          {{ character.name }}
+        </span>
+        (<span class="gender">{{ character.gender }}</span>)
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>

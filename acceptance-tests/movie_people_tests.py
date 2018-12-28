@@ -14,14 +14,15 @@ class MoviePeopleTests(unittest.TestCase):
         self.browser.get('http://localhost:8000/movies')
 
         # and clicks on the title of a movie
-        first_movie_title = self.browser.find_element_by_class_name('title')
+        first_movie_title = \
+            self.browser.find_element_by_class_name('title-link')
         first_movie_title.click()
 
         # the people that appear in it should be listed
-        self.assertEqual(self.browser, "Movie characters")
+        self.assertEqual(self.browser.title, "Movie characters")
         self.assertIn('/characters', self.browser.current_url)
 
-        characters = self.browser.find_elements_by_class_name('characters')
+        characters = self.browser.find_elements_by_class_name('character')
         self.assertGreater(len(characters), 0)
 
         # each one with its own name and gender
