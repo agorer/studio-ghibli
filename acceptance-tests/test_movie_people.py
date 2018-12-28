@@ -1,8 +1,10 @@
 from selenium import webdriver
-import unittest
+from django.test import tag
+from project.testing import DatabaselessLiveServerTestCase
 
 
-class MoviePeopleTests(unittest.TestCase):
+@tag('acceptance-tests')
+class TestMoviePeople(DatabaselessLiveServerTestCase):
     def setUp(self):
         self.browser = webdriver.Chrome()
 
@@ -11,7 +13,7 @@ class MoviePeopleTests(unittest.TestCase):
 
     def test_should_show_the_people_in_a_movie(self):
         # if the user goes to the main app url
-        self.browser.get('http://localhost:8000/movies')
+        self.browser.get(self.live_server_url + '/movies')
 
         # and clicks on the title of a movie
         first_movie_title = \
@@ -32,7 +34,3 @@ class MoviePeopleTests(unittest.TestCase):
 
             gender = character.find_element_by_class_name('gender')
             self.assertIn(gender.text.strip(), ['Male', 'Female', 'NA'])
-
-
-if __name__ == '__main__':
-    unittest.main()

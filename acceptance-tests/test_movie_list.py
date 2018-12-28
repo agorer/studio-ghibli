@@ -1,8 +1,10 @@
 from selenium import webdriver
-import unittest
+from django.test import tag
+from project.testing import DatabaselessLiveServerTestCase
 
 
-class MovieListTests(unittest.TestCase):
+@tag('acceptance-tests')
+class TestMovieList(DatabaselessLiveServerTestCase):
     def setUp(self):
         self.browser = webdriver.Chrome()
 
@@ -11,7 +13,7 @@ class MovieListTests(unittest.TestCase):
 
     def test_should_contain_a_list_of_movies(self):
         # if the user goes to the main app url
-        self.browser.get('http://localhost:8000/movies')
+        self.browser.get(self.live_server_url + '/movies')
 
         # she should be able to see a plain list of all movies Studio Ghibli
         # movies
@@ -28,7 +30,3 @@ class MovieListTests(unittest.TestCase):
 
             release_date = movie.find_element_by_class_name('release-date')
             self.assertTrue(release_date.text.strip().isdigit())
-
-
-if __name__ == '__main__':
-    unittest.main()
