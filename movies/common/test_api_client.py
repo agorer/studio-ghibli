@@ -1,14 +1,12 @@
 from django.test import SimpleTestCase
-from .movies_repository import MoviesRepository
+from .api_client import find_movies, find_characters
 from unittest import mock
 
 
-class TestMoviesRepository(SimpleTestCase):
-    def setUp(self):
-        self.repository = MoviesRepository()
+class TestApiClient(SimpleTestCase):
 
     def test_should_find_all_movies(self):
-        movies = self.repository.find_all()
+        movies = find_movies()
 
         for movie in movies:
             self.assertTrue(len(movie.id))
@@ -21,14 +19,14 @@ class TestMoviesRepository(SimpleTestCase):
         get.return_value.json.return_value = 'Error message'
         get.return_value.ok = False
 
-        movies = self.repository.find_all()
+        movies = find_movies()
 
         self.assertEqual(movies, [])
 
     def test_should_find_all_characters_of_a_movie(self):
-        movie_id = self.repository.find_all()[0].id
+        movie_id = find_movies()[0].id
 
-        characters = self.repository.find_characters(movie_id)
+        characters = find_characters(movie_id)
 
         for character in characters:
             self.assertTrue(len(character.id))
@@ -40,6 +38,6 @@ class TestMoviesRepository(SimpleTestCase):
         get.return_value.json.return_value = 'Error message'
         get.return_value.ok = False
 
-        characters = self.repository.find_characters('a-film-id')
+        characters = find_characters('a-film-id')
 
         self.assertEqual(characters, [])
