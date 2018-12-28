@@ -89,3 +89,11 @@ STATIC_URL = '/static/'
 # Test runner that does not need database
 
 TEST_RUNNER = 'project.testing.DatabaselessTestRunner'
+
+# Cache configuration
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'TIMEOUT': 60
+    }
+}
