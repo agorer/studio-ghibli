@@ -1,4 +1,4 @@
-from django.test import SimpleTestCase
+from django.test import SimpleTestCase, tag
 from .movie import Movie
 from movies.characters.character import Character
 from .movies_cache import (cache_movies,
@@ -11,6 +11,7 @@ import time
 from django.core.cache import cache
 
 
+@tag('integration-tests')
 class TestMoviesCache(SimpleTestCase):
     '''
         [IMPORTANT] These test should not be run in parallel because the all

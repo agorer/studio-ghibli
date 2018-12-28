@@ -1,8 +1,9 @@
-from django.test import SimpleTestCase
+from django.test import SimpleTestCase, tag
 from .api_client import find_movies, find_characters
 from unittest import mock
 
 
+@tag('integration-tests')
 class TestApiClient(SimpleTestCase):
 
     def test_should_find_all_movies(self):
