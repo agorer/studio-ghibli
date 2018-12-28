@@ -1,4 +1,4 @@
-from django.test import SimpleTestCase, tag
+from django.test import SimpleTestCase, tag, override_settings
 from .movie import Movie
 from movies.characters.character import Character
 from .movies_cache import (cache_movies,
@@ -62,9 +62,14 @@ class TestMoviesCache(SimpleTestCase):
     def test_should_know_if_characters_are_not_cached(self):
         self.assertFalse(characters_are_cached('movie-id'))
 
-    # Test speed could be improved by making cache timeout configurable
-    def test_should_cache_for_only_60_seconds(self):
+    @override_settings(CACHES={
+            'default': {
+                'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+                'TIMEOUT': 1
+            }
+        })
+    def test_should_cache_for_only_configured_seconds(self):
         cache_movies(self.movies)
-        time.sleep(61)
+        time.sleep(2)
 
         self.assertEqual(get_cached_movies(), None)
