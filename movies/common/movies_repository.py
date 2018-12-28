@@ -19,4 +19,7 @@ class MoviesRepository:
             'film': movie_id
         })
 
-        return list(map(parse_character, response.json()))
+        if response.ok:
+            return list(map(parse_character, response.json()))
+        else:
+            return []
