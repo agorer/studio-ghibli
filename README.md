@@ -51,3 +51,5 @@ $> flake8
 - URL's that point to the API should be in a configuration object instead of directly in the api_client module.
 
 - Instead of using dependency injection implicitly through the python module system an explicit system could be used that will made dependencies easier to discover and configure (currently done using monkey-patching).
+
+- There is a warning when launching the application / tests because Django router does not like routes starting with a slash. It could be removed by redoing the url configuration and changing some tests (when Django finds an ending slash and there is none on the configuration it sends a redirect instead of going directly to the page).
